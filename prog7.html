@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+
+<head>
+    <title>User App</title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body ng-controller="Ctrl">
+    <h2>User data</h2>
+    <ul ng-repeat="user in users">
+        <li>
+            Name:<input type="text" ng-model="user.name" ng-disabled="!user.editing" />
+            Email:<input type="text" ng-model="user.email" ng-disabled="!user.editing" />
+            <button ng-if="!user.editing" ng-click="editUser(user)">Edit</button>
+            <button ng-if="user.editing" ng-click="saveUser(user)">Update</button>
+            <button ng-click="deleteUser($index)">Delete</button>
+        </li>
+    </ul>
+    <button ng-click="addUser()">Add User</button>
+    <script>
+        var app = angular.module("todoApp", []);
+        app.controller("Ctrl", function ($scope) {
+            $scope.users = [
+                { name: "Thrupthi", email: "thrupti@gmail.com", editing: false },
+                { name: "Geetha", email: "Geetha@gmail.com", editing: false },
+            ];
+            $scope.addUser = function () {
+                var adds = { name: "", email: "", editing: true };
+                $scope.users.push(adds);
+            };
+            $scope.deleteUser = function (index) {
+                $scope.users.splice(index, 1);
+            };
+            $scope.editUser = function (user) {
+                user.editing = true;
+            };
+            $scope.saveUser = function (user) {
+                user.editing = false;
+            };
+        });
+    </script>
+</body>
+
+</html>

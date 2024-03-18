@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="virat">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Factorial</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="ctr">
+<div id="container">
+    <h1>Factorial and Square</h1>
+    <input type="number" placeholder="Enter a number" ng-model="a"><br><br>
+    <div ng-model="ans">{{ans}}</div>
+    <button ng-click="fact()">fact</button>
+    <button ng-click="sqr()">sqr</button>
+</div>
+
+
+    <script>
+        var app = angular.module('virat', []);
+        app.controller("ctr", function ($scope) {
+            $scope.fact = function () {
+                var n = $scope.a;
+                var fact = 1;
+                for (i = 1; i <= n; i++) {
+                    fact = fact * i;
+                }
+                $scope.ans = fact;
+            };
+            $scope.sqr = function () {
+                $scope.ans = $scope.a * $scope.a;
+            };
+        });
+    </script>
+</body>
+
+</html>

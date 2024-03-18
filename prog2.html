@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="apps">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CART</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="ctr">
+    <center>
+    <div id="container">
+    <h1>Shopping list</h1>
+    <ul ng-repeat="item in shoppingitem" style="list-style: none;">
+        <li>
+            {{item.name}}-{{item.price}}
+            <button ng-click="removeitem($index)" class="btn">remove item</button>
+        </li>
+    </ul>
+    <form ng-submit="additem()">
+        <label>Name:<input type="text" ng-model="newitemname" required /></label><br /><br />
+        <label>Price:<input type="number" ng-model="newitemprice" required /><br /><br /></label>
+        <button type="submit" class="btn">Add items</button>
+    </form>
+</div>
+</center>
+    <script>
+        var app = angular.module("apps", []);
+        app.controller("ctr", function ($scope) {
+            $scope.shoppingitem = [{ name: "Butter", price: "500" }];
+            $scope.additem = function () {
+                var newitem = {
+                    name: $scope.newitemname,
+                    price: $scope.newitemprice,
+                };
+                $scope.shoppingitem.push(newitem);
+                $scope.newitemname = " ";
+                $scope.newitemprice = " ";
+            };
+            $scope.removeitem = function (index) {
+                $scope.shoppingitem.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+
+</html>

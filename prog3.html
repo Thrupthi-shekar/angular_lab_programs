@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body ng-app="calci" ng-controller="ctr">
+    <div>
+        <input type="number" placeholder="enter number1" ng-model="a"><br>
+        <input type="number" placeholder="enter number2" ng-model="b"><br>
+        <input type="text" placeholder="enter the operator" ng-model="op"><br>
+        <button ng-click="res()"> = </button>
+        <div ng-model="ans">{{ans}}</div>
+    </div>
+    <script>
+        var c=angular.module('calci', []);
+        c.controller('ctr', function($scope)
+        {
+            $scope.res=function(){
+                var a=$scope.a;
+                var b=$scope.b;
+                var op=$scope.op;
+                switch(op){
+                    case'+':
+                            $scope.ans=a+b;
+                            break;
+                    case'-':
+                            $scope.ans=a-b;
+                            break;
+                    case'*':
+                            $scope.ans=a*b;
+                            break;
+                    case'/':
+                            $scope.ans=a/b;
+                            break;
+                    case'%':
+                            $scope.ans=a%b;
+                            break;
+                    default:
+                            $scope.ans="enter the valid number or operator";
+                            break;
+                }
+                $scope.a="";
+                $scope.b="";
+                $scope.op="";
+            }
+        });
+    </script>
+
+
+</body>
+</html>

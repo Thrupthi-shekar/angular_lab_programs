@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+        <title>studentlist</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    </head>
+    <body ng-app="student" ng-controller="ctr">
+        <div>
+            <input type="text" ng-model="name" placeholder="enter name"/><br/><br\>
+            <input tabindex="number" ng-model="cgpa" placeholder="enter a cgpa"/><br/><br/>
+            <button ng-click="addstd()">add stds</button>
+            <span>Total: {{std.length}}</span>
+            <h1>Student list</h1>
+            <ul ng-repeat="item in std">
+                <li>{{item.name}}-{{item.cgpa}}</li>
+
+            </ul>
+        </div>
+        <script>
+            var app=angular.module("student",[]);
+            app.controller("ctr", function ($scope){
+                $scope.std=[
+                    {name:"Thrupthi",cgpa:"10"},
+                    {name:"Thrisha",cgpa:"9"},
+                ];
+                $scope.addstd=function(){
+                    var newstd={ name:$scope.name,cgpa:$scope.cgpa};
+                    $scope.std.push(newstd);
+                    $scope.name=" ";
+                    $scope.cgpa=" ";
+                };
+            });
+        </script>
+
+    </body>
+</html>

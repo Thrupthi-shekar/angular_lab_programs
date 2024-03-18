@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="employeeApp">
+<head>
+  <title>AngularJS Employee List</title>
+  <style>
+    #employeeList {
+      width: 400px;
+      margin: auto;
+      /* border: 1px solid #ccc; */
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 20px;
+      background-color: lightcoral;
+      border: 2px solid black;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 2px solid black;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      /* border: 1px solid #ddd; */
+      padding: 8px;
+      text-align: left;
+      border: 2px solid black;
+    }
+    th{
+        background-color: gray;
+    }
+    td{
+        background-color: #ddd;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="employeeCtrl" id="employeeList">
+  <h2>Employee List</h2>
+  
+  <label for="searchName">Search by Name:</label>
+  <input type="text" id="searchName" ng-model="searchName">
+
+  <label for="searchSalary">Search by Salary:</label>
+  <input type="number" id="searchSalary" ng-model="searchSalary">
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Salary</th>
+    </tr>
+    <tr ng-repeat="employee in employees | filter:{name: searchName, salary: searchSalary}">
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.salary | currency }}</td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  var app = angular.module('employeeApp', []);
+
+  app.controller('employeeCtrl', function ($scope) {
+    $scope.employees = [
+      { name: 'Thrupthi', salary: 50000 },
+      { name: 'Thrisha', salary: 60000 },
+      { name: 'Geetha', salary: 75000 },
+      // Add more employee details as needed
+    ];
+  });
+</script>
+
+</body>
+</html>

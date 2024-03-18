@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="first">
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+
+  <body ng-controller="ctrl">
+    <center>
+    <h2>NAME</h2>
+    <div class="main">
+      Enter the first name:
+      <input type="text" class="ip1" placeholder="firstname" ng-model="firstname" /><br /><br/>
+         Enter the last name :
+      <input type="text" class="ip2" placeholder="lastname" ng-model="lastname"/><br /><br />
+      <button ng-click="fullname()">press the button</button><br /><br />
+      <div class="ans" ng-model="full_name">{{full_name}}<br /></div>
+    </div>
+  </center>
+    <script>
+      var first = angular.module("first", []);
+      first.controller("ctrl", function ($scope) {
+        $scope.firstname = "thrupthi";
+        $scope.lastname = "shekar";
+        $scope.full_name = $scope.firstname + "  " + $scope.lastname;
+
+        $scope.fullname = function () {
+          $scope.full_name = $scope.firstname + "  " + $scope.lastname;
+          $scope.firstname = "";
+          $scope.lastname = "";
+        };
+      });
+    </script>
+  </body>
+</html>

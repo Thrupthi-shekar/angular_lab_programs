@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List App</title>
+    <script src=angular.min.js></script>
+    <style>
+        #body {
+            background-color: palevioletred;
+            border: 3px solid black;
+            width: 500px;
+            box-shadow: 10px 20px pink;
+        }
+
+        .btn:hover {
+            background-color: bisque;
+            cursor: pointer;
+            font-family: cursive;
+        }
+
+        .edit{
+            border: 2px solid black;
+        }
+        .edit:hover{
+            background-color: rgb(224, 142, 34);
+        }
+        .save{
+            border: 2px solid black;
+        }
+        .save:hover{
+            background-color: rgb(237, 146, 28);
+        }
+        .dlt{
+            border: 2px solid black;
+        }
+        .dlt:hover{
+            background-color: red;
+        }
+        h2 {
+            text-decoration: underline;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body ng-controller="Ctrl">
+    <center>
+        <div id="body">
+            <h2>To-Do List</h2>
+            <ul ng-repeat="task in tasks">
+                <li style="list-style: none;">
+                    <input type="text" ng-model="task.name" ng-disabled="!task.editing">
+                    <input type="time" ng-model="task.time" ng-disabled="!task.editing">
+                    <button ng-if="!task.editing" ng-click="editTask(task)" class="edit">Edit</button>
+                    <button ng-if="task.editing" ng-click="saveTask(task)" class="save">Save</button>
+                    <button ng-click="deleteTask($index)" class="dlt">Delete</button>
+                </li>
+            </ul>
+            <button ng-click="addTask()" class="btn">Add Task</button>
+        </div>
+    </center>
+    <script>
+        var app = angular.module('todoApp', []);
+        app.controller('Ctrl', function ($scope) {
+            $scope.tasks = [
+                { name: 'Task 1', time: '10:39', editing: false },
+                { name: 'Task 2', time: '10:00', editing: false },
+                { name: 'Task 3', time: '12:00', editing: false }
+            ];
+
+            $scope.addTask = function () {
+                var adds = { name: '', time: '', editing: true };
+                $scope.tasks.push(adds);
+            };
+
+            $scope.deleteTask = function (index) {
+                $scope.tasks.splice(index, 1);
+            };
+
+            $scope.editTask = function (task) {
+                task.editing = true;
+            };
+
+            $scope.saveTask = function (task) {
+                task.editing = false;
+            };
+        });
+    </script>
+</body>
+
+</html>

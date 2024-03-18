@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        center {
+            background-color: coral;
+            margin-left: 350px;
+            margin-top: 50px;
+            border: 2px solid black;
+            width: 500px;
+            /* align-items: center; */
+            border-radius: 5px;
+        }
+
+        button {
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+
+        input {
+            border: 2px solid black;
+            border-radius: 2px;
+            padding: 4px;
+            width: 60%;
+        }
+        p{
+            padding-left: 35px;
+        }
+    </style>
+</head>
+<center>
+
+    <body ng-init="items=['Sweets', 'Flowers']">
+        <h1>Items list</h1>
+        <input ng-model="newItem" placeholder="enter new item">
+        <button ng-click="newItem && items.push(newItem); newItem ='';">Add</button>
+        <ul>
+            <li ng-repeat="item in items" style="list-style: none;"> <br>
+                {{ item }}
+                <button ng-click="items.splice($index, 1)">Remove</button>
+            </li>
+        </ul> 
+              <p>Total Items list: {{ items.length }}</p> 
+    </body>
+</center>
+
+</html>
